@@ -1,5 +1,3 @@
-# RadosGW Admin CLI Audit
-
 # RadosGW-admin: Command and Parameter Documentation Audit
 
 ## Summary
