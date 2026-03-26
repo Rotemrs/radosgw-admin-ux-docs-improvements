@@ -8,15 +8,15 @@
 
 * Only 30 commands (~14%) are documented in `admin.rst`
 
-* A significant portion of commands   is not documented in the man page\
+* A significant portion of commands is not documented in the man page
 
-* ~160 parameters   identified across all source
+* ~160 parameters identified across all source
 
 * 157 parameters appear in `--help`
 
 * Only 32 parameters (~20%) are documented in `admin.rst`
 
-* A significant portion of  parameters     is not documented in the man page
+* A significant portion of parameters is not documented in the man page
 
     
 
@@ -219,7 +219,7 @@ Only 30 commands from `--help` are documented in admin.rst (about 14% of all com
 
 All parameters documented in `admin.rst` appear in `--help`.
 
-Only 32 parameters from --help are documented. 125 parameters are missing.
+Only 32 parameters from `--help` are documented. 125 parameters are missing.
 
 👉 This means ~80% of parameters are undocumented in the admin guide.
 
