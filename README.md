@@ -2,7 +2,7 @@
 
 GSoC 2026 proposal work for the Ceph project.
 Tracker issue: [#74508](https://tracker.ceph.com/issues/74508)
-Mentor: Yuval Lifshitz (IBM)
+Mentors: Yuval Lifshitz, Jacques Heunis
 
 ---
 
