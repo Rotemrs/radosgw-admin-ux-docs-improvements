@@ -1,0 +1,843 @@
+[
+{
+  "name": "radosgw-admin",
+  "description": "Ceph Object Gateway user administration utility.\nSee: https://docs.ceph.com/en/latest/radosgw/admin/",
+  "options": [
+    {
+      "name": "--conf",
+      "description": "Path to ceph.conf (default: /etc/ceph/ceph.conf)",
+      "required": false,
+      "type": "TEXT"
+    },
+    {
+      "name": "--cluster",
+      "description": "Cluster name (default: ceph)",
+      "required": false,
+      "type": "TEXT"
+    },
+    {
+      "name": "--id",
+      "description": "ID portion of the client name",
+      "required": false,
+      "type": "TEXT"
+    }
+  ],
+  "subcommands": [
+    {
+      "name": "user",
+      "description": "User management operations",
+      "options": [
+
+      ],
+      "subcommands": [
+        {
+          "name": "create",
+          "description": "Create a new user",
+          "options": [
+            {
+              "name": "--uid",
+              "description": "The user ID",
+              "required": true,
+              "type": "TEXT"
+            },
+            {
+              "name": "--display-name",
+              "description": "User display name",
+              "required": true,
+              "type": "TEXT"
+            },
+            {
+              "name": "--email",
+              "description": "The email address of the user",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--admin",
+              "description": "Set the admin flag on the user",
+              "required": false,
+              "type": ""
+            },
+            {
+              "name": "--max-buckets",
+              "description": "Maximum number of buckets for the user (server default: 1000 if not specified)",
+              "required": false,
+              "type": "INT"
+            },
+            {
+              "name": "--format",
+              "description": "Output format for the response: json, xml",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--tenant",
+              "description": "Tenant name",
+              "required": false,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "info",
+          "description": "Display information for a user including subusers and keys",
+          "options": [
+            {
+              "name": "--uid",
+              "description": "The user ID",
+              "required": true,
+              "type": "TEXT"
+            },
+            {
+              "name": "--display-name",
+              "description": "User display name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--format",
+              "description": "Output format for the response: json, xml",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--tenant",
+              "description": "Tenant name",
+              "required": false,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "modify",
+          "description": "Modify an existing user",
+          "options": [
+            {
+              "name": "--uid",
+              "description": "The user ID",
+              "required": true,
+              "type": "TEXT"
+            },
+            {
+              "name": "--display-name",
+              "description": "User display name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--email",
+              "description": "New email address for the user",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--admin",
+              "description": "Set or clear the admin flag on the user",
+              "required": false,
+              "type": ""
+            },
+            {
+              "name": "--format",
+              "description": "Output format for the response: json, xml",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--tenant",
+              "description": "Tenant name",
+              "required": false,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "rm",
+          "description": "Remove a user and all associated subusers",
+          "options": [
+            {
+              "name": "--uid",
+              "description": "The user ID",
+              "required": true,
+              "type": "TEXT"
+            },
+            {
+              "name": "--display-name",
+              "description": "User display name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--tenant",
+              "description": "Tenant name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--purge-data",
+              "description": "Also purge all data associated with the user",
+              "required": false,
+              "type": ""
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "list",
+          "description": "List all users",
+          "options": [
+            {
+              "name": "--format",
+              "description": "Output format for the response: json, xml",
+              "required": false,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "suspend",
+          "description": "Suspend a user, disabling their access",
+          "options": [
+            {
+              "name": "--uid",
+              "description": "The user ID",
+              "required": true,
+              "type": "TEXT"
+            },
+            {
+              "name": "--display-name",
+              "description": "User display name",
+              "required": false,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "enable",
+          "description": "Re-enable a previously suspended user",
+          "options": [
+            {
+              "name": "--uid",
+              "description": "The user ID",
+              "required": true,
+              "type": "TEXT"
+            },
+            {
+              "name": "--display-name",
+              "description": "User display name",
+              "required": false,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "stats",
+          "description": "Show user stats as accounted by the quota subsystem",
+          "options": [
+            {
+              "name": "--uid",
+              "description": "The user ID",
+              "required": true,
+              "type": "TEXT"
+            },
+            {
+              "name": "--display-name",
+              "description": "User display name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--sync-stats",
+              "description": "Update user stats with current stats from bucket indexes",
+              "required": false,
+              "type": ""
+            }
+          ],
+          "subcommands": [
+
+          ]
+        }
+      ]
+    },
+    {
+      "name": "bucket",
+      "description": "Bucket management operations",
+      "options": [
+
+      ],
+      "subcommands": [
+        {
+          "name": "list",
+          "description": "List buckets, or objects within a bucket if --bucket is specified",
+          "options": [
+            {
+              "name": "--bucket",
+              "description": "The bucket name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--bucket-id",
+              "description": "The bucket ID",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--allow-unordered",
+              "description": "Faster unsorted listing, removes ordering requirement",
+              "required": false,
+              "type": ""
+            },
+            {
+              "name": "--format",
+              "description": "Output format for the response: json, xml",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--tenant",
+              "description": "Tenant name",
+              "required": false,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "stats",
+          "description": "Return statistics and internal information about a bucket",
+          "options": [
+            {
+              "name": "--bucket",
+              "description": "The bucket name",
+              "required": true,
+              "type": "TEXT"
+            },
+            {
+              "name": "--bucket-id",
+              "description": "The bucket ID",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--format",
+              "description": "Output format for the response: json, xml",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--tenant",
+              "description": "Tenant name",
+              "required": false,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "rm",
+          "description": "Remove a bucket",
+          "options": [
+            {
+              "name": "--bucket",
+              "description": "The bucket name",
+              "required": true,
+              "type": "TEXT"
+            },
+            {
+              "name": "--bucket-id",
+              "description": "The bucket ID",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--purge-objects",
+              "description": "Remove all objects before deleting (required for non-empty buckets)",
+              "required": false,
+              "type": ""
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "link",
+          "description": "Link a bucket to a specified user, changing ownership",
+          "options": [
+            {
+              "name": "--bucket",
+              "description": "The bucket name",
+              "required": true,
+              "type": "TEXT"
+            },
+            {
+              "name": "--bucket-id",
+              "description": "The bucket ID",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--uid",
+              "description": "The user ID",
+              "required": true,
+              "type": "TEXT"
+            },
+            {
+              "name": "--display-name",
+              "description": "User display name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--tenant",
+              "description": "Tenant name",
+              "required": false,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "unlink",
+          "description": "Unlink a bucket from a specified user",
+          "options": [
+            {
+              "name": "--bucket",
+              "description": "The bucket name",
+              "required": true,
+              "type": "TEXT"
+            },
+            {
+              "name": "--bucket-id",
+              "description": "The bucket ID",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--uid",
+              "description": "The user ID",
+              "required": true,
+              "type": "TEXT"
+            },
+            {
+              "name": "--display-name",
+              "description": "User display name",
+              "required": false,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "check",
+          "description": "Check bucket index by verifying size and object count stats",
+          "options": [
+            {
+              "name": "--bucket",
+              "description": "The bucket name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--bucket-id",
+              "description": "The bucket ID",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--fix",
+              "description": "Fix the bucket index in addition to checking it",
+              "required": false,
+              "type": ""
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "logging",
+          "description": "Bucket logging operations",
+          "options": [
+
+          ],
+          "subcommands": [
+            {
+              "name": "flush",
+              "description": "Flush pending log records to the log bucket immediately",
+              "options": [
+                {
+                  "name": "--bucket",
+                  "description": "The source bucket to flush logs for",
+                  "required": true,
+                  "type": "TEXT"
+                }
+              ],
+              "subcommands": [
+
+              ]
+            },
+            {
+              "name": "info",
+              "description": "Get logging configuration for a source bucket, or list sources logging to a specific log bucket",
+              "options": [
+                {
+                  "name": "--bucket",
+                  "description": "The source bucket to get logging info for",
+                  "required": false,
+                  "type": "TEXT"
+                }
+              ],
+              "subcommands": [
+
+              ]
+            },
+            {
+              "name": "list",
+              "description": "List the log objects pending commit for a source bucket",
+              "options": [
+                {
+                  "name": "--bucket",
+                  "description": "The source bucket",
+                  "required": true,
+                  "type": "TEXT"
+                }
+              ],
+              "subcommands": [
+
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "quota",
+      "description": "Quota management for users and buckets",
+      "options": [
+
+      ],
+      "subcommands": [
+        {
+          "name": "set",
+          "description": "Set quota parameters for a user, bucket, or account",
+          "options": [
+            {
+              "name": "--uid",
+              "description": "The user ID",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--display-name",
+              "description": "User display name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--bucket",
+              "description": "The bucket name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--bucket-id",
+              "description": "The bucket ID",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--quota-scope",
+              "description": "Scope of the quota: bucket, user, or account",
+              "required": true,
+              "type": "TEXT"
+            },
+            {
+              "name": "--max-objects",
+              "description": "Maximum number of objects (negative value to disable)",
+              "required": false,
+              "type": "INT"
+            },
+            {
+              "name": "--max-size",
+              "description": "Maximum storage size in B/K/M/G/T (negative value to disable)",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--format",
+              "description": "Output format for the response: json, xml",
+              "required": false,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "enable",
+          "description": "Enable quota enforcement for a user or bucket",
+          "options": [
+            {
+              "name": "--uid",
+              "description": "The user ID",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--display-name",
+              "description": "User display name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--quota-scope",
+              "description": "Scope: bucket or user",
+              "required": true,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "disable",
+          "description": "Disable quota enforcement for a user or bucket",
+          "options": [
+            {
+              "name": "--uid",
+              "description": "The user ID",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--display-name",
+              "description": "User display name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--quota-scope",
+              "description": "Scope: bucket or user",
+              "required": true,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ratelimit",
+      "description": "Rate limit management for users and buckets",
+      "options": [
+
+      ],
+      "subcommands": [
+        {
+          "name": "set",
+          "description": "Set rate limit parameters for a user or bucket",
+          "options": [
+            {
+              "name": "--uid",
+              "description": "The user ID",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--display-name",
+              "description": "User display name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--bucket",
+              "description": "The bucket name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--bucket-id",
+              "description": "The bucket ID",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--ratelimit-scope",
+              "description": "Scope of the rate limit: bucket, user, or anonymous",
+              "required": true,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+            {
+              "name": "",
+              "description": "Controls maximum request/byte rates per accumulation interval per RGW",
+              "options": [
+                {
+                  "name": "--max-read-ops",
+                  "description": "Max read requests per interval (0 = unlimited)",
+                  "required": false,
+                  "type": "INT"
+                },
+                {
+                  "name": "--max-write-ops",
+                  "description": "Max write requests per interval (0 = unlimited)",
+                  "required": false,
+                  "type": "INT"
+                },
+                {
+                  "name": "--max-read-bytes",
+                  "description": "Max read bytes per interval (0 = unlimited)",
+                  "required": false,
+                  "type": "INT"
+                },
+                {
+                  "name": "--max-write-bytes",
+                  "description": "Max write bytes per interval (0 = unlimited)",
+                  "required": false,
+                  "type": "INT"
+                }
+              ],
+              "subcommands": [
+
+              ]
+            }
+          ]
+        },
+        {
+          "name": "get",
+          "description": "Get current rate limit parameters for a user or bucket",
+          "options": [
+            {
+              "name": "--uid",
+              "description": "The user ID",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--display-name",
+              "description": "User display name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--bucket",
+              "description": "The bucket name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--bucket-id",
+              "description": "The bucket ID",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--ratelimit-scope",
+              "description": "Scope: bucket, user, or anonymous",
+              "required": true,
+              "type": "TEXT"
+            },
+            {
+              "name": "--format",
+              "description": "Output format for the response: json, xml",
+              "required": false,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "enable",
+          "description": "Enable rate limiting for a user or bucket",
+          "options": [
+            {
+              "name": "--uid",
+              "description": "The user ID",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--display-name",
+              "description": "User display name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--ratelimit-scope",
+              "description": "Scope: bucket, user, or anonymous",
+              "required": true,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+
+          ]
+        },
+        {
+          "name": "disable",
+          "description": "Disable rate limiting for a user or bucket",
+          "options": [
+            {
+              "name": "--uid",
+              "description": "The user ID",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--display-name",
+              "description": "User display name",
+              "required": false,
+              "type": "TEXT"
+            },
+            {
+              "name": "--ratelimit-scope",
+              "description": "Scope: bucket, user, or anonymous",
+              "required": true,
+              "type": "TEXT"
+            }
+          ],
+          "subcommands": [
+
+          ]
+        }
+      ]
+    }
+  ]
+}
+]
