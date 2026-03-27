@@ -107,7 +107,7 @@ def command_ref_block(path, desc, opts):
     return "".join(lines)
 
 # ============================================================
-# APPROACH A — Marker-based
+# Marker-based Approach
 #
 # The generator writes a single admin.rst file. Human narrative
 # goes between special RST comment markers. On subsequent runs,
