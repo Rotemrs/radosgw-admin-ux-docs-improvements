@@ -74,4 +74,4 @@ without running the binary.
 ## Background
 
 GSoC 2026 application to the Ceph project.
-Prior merged PR in Ceph from earlier work with the mentor on the TBB iterator migration.
+Prior merged PR in Ceph from earlier work with the mentor Yuval Lifshitz on the TBB iterator migration.
