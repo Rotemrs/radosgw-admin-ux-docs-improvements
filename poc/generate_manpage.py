@@ -44,7 +44,6 @@ def rst_option(name, description, required=False):
         lines.append(f"   {line}")
     # Two blank lines after each option for visual separation
     lines.append("")
-    lines.append("")
     return "\n".join(lines) + "\n"
 
 def rst_command_entry(path, description):
