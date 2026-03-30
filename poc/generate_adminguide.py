@@ -4,10 +4,6 @@ generate_adminguide.py
 ======================
 Generates a skeleton for doc/radosgw/admin.rst from the command tree JSON.
 
-Two approaches are demonstrated — choose one or combine them:
-
-Generates a skeleton for doc/radosgw/admin.rst from the command tree JSON.
-
 Uses a marker-based approach: human-written narrative is preserved between
 special RST comment markers. Safe to regenerate at any time without losing prose.
 
@@ -17,13 +13,8 @@ for config options — C++ is the single source of truth — but requires no cus
 Sphinx extension, no YAML files, and produces one single file.
 
 Usage:
-  ./radosgw_admin_poc --export-tree | python3 generate_adminguide.py
-  ./radosgw_admin_poc --export-tree | python3 generate_adminguide.py --existing=admin.rst > admin.rst
-
-Usage:
-  ./radosgw_admin_poc --export-tree | python3 generate_adminguide.py
-  ./radosgw_admin_poc --export-tree | python3 generate_adminguide.py --approach=includes
-  ./radosgw_admin_poc --export-tree | python3 generate_adminguide.py --approach=markers > admin.rst
+  ./radosgw_admin_poc --export-tree | python3 generate_adminguide.py > admin.rst
+  ./radosgw_admin_poc --export-tree | python3 generate_adminguide.py --existing=admin.rst > admin_new.rst && mv admin_new.rst admin.rst
 """
 
 import json
@@ -204,7 +195,7 @@ def generate_adminguide(root, existing_file=None):
             heading = desc[:50] if len(path.split()) <= 1 else heading
             out.append(f"{heading}\n{'-' * len(heading)}\n\n")
 
-            # Stable anchor for cross-referencing from other docs
+            # Stable anchor for this command section
             anchor = ".. _radosgw-admin-" + path.replace(" ", "-") + ":"
             out.append(f"{anchor}\n\n")
 
@@ -230,7 +221,7 @@ def main():
     parser.add_argument(
         "--existing",
         default="admin.rst",
-        help="Existing admin.rst to preserve narratives from (markers approach only)"
+        help="Existing admin.rst to preserve narratives from"
     )
     args = parser.parse_args()
 
