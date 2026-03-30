@@ -234,11 +234,13 @@ declares exactly what it needs.
 ```
 # Flag-like value rejected
 $ ./radosgw_admin_poc user create --uid=-h --display-name="Test"
-[error] Value '-h' looks like a flag. Use --option=value syntax.
+--uid: Value '-h' looks like a flag. Use --option=value syntax.
+Run with --help or --help-all for more information.
 
 # Duplicate flag rejected
 $ ./radosgw_admin_poc user create --uid=alice --uid=bob --display-name="Test"
-[error] --uid: option specified more than once but multi_option_policy is Throw
+--uid: At Most 1 required but received 2
+Run with --help or --help-all for more information.
 
 # Correct usage
 $ ./radosgw_admin_poc user create --uid=johndoe --display-name="John Doe"
@@ -273,17 +275,19 @@ Usage: radosgw-admin ratelimit set [OPTIONS]
 
 Options:
   -h,--help                               Print this help message and exit
+  --help-all                              Expand all help
   --uid TEXT                              The user ID
   --display-name TEXT                     User display name
   --bucket TEXT                           The bucket name
   --bucket-id TEXT                        The bucket ID
   --ratelimit-scope TEXT REQUIRED         Scope of the rate limit: bucket, user, or anonymous
-
-Rate limiting options - Controls maximum request/byte rates per accumulation interval per RGW:
-  --max-read-ops INT                      Max read requests per interval (0 = unlimited)
-  --max-write-ops INT                     Max write requests per interval (0 = unlimited)
-  --max-read-bytes INT                    Max read bytes per interval (0 = unlimited)
-  --max-write-bytes INT                   Max write bytes per interval (0 = unlimited)
+[Option Group: Rate limiting options]
+  Controls maximum request/byte rates per accumulation interval per RGW
+  Options:
+    --max-read-ops INT                    Max read requests per interval (0 = unlimited)
+    --max-write-ops INT                   Max write requests per interval (0 = unlimited)
+    --max-read-bytes INT                  Max read bytes per interval (0 = unlimited)
+    --max-write-bytes INT                 Max write bytes per interval (0 = unlimited)
 ```
 
 The "Rate limiting options" group is defined with `add_option_group()` in C++.
