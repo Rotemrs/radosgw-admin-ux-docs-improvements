@@ -46,6 +46,7 @@ Usage: radosgw-admin [OPTIONS] [SUBCOMMAND]
 Options:
   -h,--help                               Print this help message and exit
   --export-tree                           Export the full command tree as JSON (for doc generation)
+  --help-all                              Expand all help
   -c,--conf TEXT                          Path to ceph.conf (default: /etc/ceph/ceph.conf)
   --cluster TEXT                          Cluster name (default: ceph)
   --id TEXT                               ID portion of the client name
@@ -105,22 +106,25 @@ Options:
   -h,--help                               Print this help message and exit
   --help-all                              Expand all help
 
+
 Subcommands:
-  create  Create a new user
-    Options:
-      --uid TEXT REQUIRED                 The user ID
-      --display-name TEXT REQUIRED        User display name
-      --email TEXT                        The email address of the user
-      --admin                             Set the admin flag on the user
-      --max-buckets INT                   Maximum number of buckets for the user
-      --format TEXT                       Output format for the response: json, xml
-      --tenant TEXT                       Tenant name
-  info  Display information for a user including subusers and keys
-    Options:
-      --uid TEXT REQUIRED                 The user ID
-      --display-name TEXT                 User display name
-      --format TEXT                       Output format for the response: json, xml
-      --tenant TEXT                       Tenant name
+create
+  Create a new user
+  Options:
+    --uid TEXT REQUIRED                   The user ID
+    --display-name TEXT REQUIRED          User display name
+    --email TEXT                          The email address of the user
+    --admin                               Set the admin flag on the user
+    --max-buckets INT                     Maximum number of buckets for the user (server default: 1000 if not specified)
+    --format TEXT                         Output format for the response: json, xml
+    --tenant TEXT                         Tenant name
+info
+  Display information for a user including subusers and keys
+  Options:
+    --uid TEXT REQUIRED                   The user ID
+    --display-name TEXT                   User display name
+    --format TEXT                         Output format for the response: json, xml
+    --tenant TEXT                         Tenant name
   ... (all other user subcommands expanded)
 ```
 
@@ -148,11 +152,12 @@ Usage: radosgw-admin user create [OPTIONS]
 
 Options:
   -h,--help                               Print this help message and exit
+  --help-all                              Expand all help
   --uid TEXT REQUIRED                     The user ID
   --display-name TEXT REQUIRED            User display name
   --email TEXT                            The email address of the user
   --admin                                 Set the admin flag on the user
-  --max-buckets INT                       Maximum number of buckets for the user
+  --max-buckets INT                       Maximum number of buckets for the user (server default: 1000 if not specified)
   --format TEXT                           Output format for the response: json, xml
   --tenant TEXT                           Tenant name
 ```
@@ -171,7 +176,7 @@ don't support them (e.g. `user suspend --help` will not show `--format`).
 $ ./radosgw_admin_poc bucket logging
 
 A subcommand is required
-Run with --help for more information.
+Run with --help or --help-all for more information.
 ```
 
 ```
@@ -200,12 +205,12 @@ that produces this behavior automatically — no custom error handling needed.
 
 ```
 $ ./radosgw_admin_poc user create
-[error] --uid is required
-Run with --help for more information.
+--uid is required
+Run with --help or --help-all for more information.
 
 $ ./radosgw_admin_poc user create --uid=johndoe
-[error] --display-name is required
-Run with --help for more information.
+--display-name is required
+Run with --help or --help-all for more information.
 
 $ ./radosgw_admin_poc user create --uid=johndoe --display-name="John Doe"
 [user create] uid=johndoe display-name="John Doe"
