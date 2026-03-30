@@ -621,7 +621,7 @@ was not provided by the user — this is the correct signal to pass to the RGW l
 
 ## Intentional differences from Ceph (improvements, not bugs)
 
-These behaviors differ from legacy Ceph but are intentional design decisions:
+Backward compatibility is the priority. The following behaviors differ from legacy Ceph and are optional future improvements, which may be introduced gradually via warnings before errors if agreed with mentors:
 
 | Behavior | Legacy Ceph | This PoC | Reason |
 |---|---|---|---|
@@ -653,7 +653,7 @@ radosgw-admin.cc (CLI11 definitions)       ← SINGLE SOURCE OF TRUTH
                 | commands.json
                 |
                 ├── generate_manpage.py     → doc/man/8/radosgw-admin.rst
-                └── generate_adminguide.py  → doc/radosgw/admin.rst
+                └── generate_adminguide.py  → doc/radosgw/admin.rst   (secondary goal)
                         |
                         | Sphinx
                         |
@@ -673,3 +673,11 @@ CI check: regenerate → diff → fail if different → PR blocked until fixed
 7. CI enforces step 4 was done before the PR merges
 
 **No separate documentation file needs to be manually maintained. Ever.**
+
+---
+
+## Notes for future integration
+
+- The admin guide generation is a secondary goal — `--help` and man page take priority.
+- The design supports both committing generated files and generating documentation 
+  at publication time — to be decided with mentors.
