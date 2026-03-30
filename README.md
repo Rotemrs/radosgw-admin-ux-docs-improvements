@@ -1,7 +1,7 @@
 # radosgw-admin UX and Documentation Improvements
 
 GSoC 2026 proposal work for the Ceph project.  
-📄 **Proposal:** [Rotem Shapira - GSoC Proposal](./Rotem_Shapira_GSoC_Proposal.pdf)
+📄 **GSoC Proposal (PDF):** [View here](./Rotem_Shapira_GSoC_Proposal.pdf)
 
 Tracker issue: [#74508](https://tracker.ceph.com/issues/74508)  
 Mentors: Yuval Lifshitz, Jacques Heunis
