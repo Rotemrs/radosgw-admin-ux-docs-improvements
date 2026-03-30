@@ -2,26 +2,20 @@
 
 ## Summary
 
+**Commands:**
 * ~220 commands identified across all sources
-
 * 218 commands appear in `--help`
-
 * Only 30 commands (~14%) are documented in `admin.rst`
+* A significant portion of commands is not documented in the man page
 
-* A significant portion of commands is not documented in the man page
-
-* ~160 parameters identified across all source
-
+**Parameters:**
+* ~160 parameters identified across all sources
 * 157 parameters appear in `--help`
-
 * Only 32 parameters (~20%) are documented in `admin.rst`
-
 * A significant portion of parameters is not documented in the man page
 
-    
-
+**General:**
 * Multiple inconsistencies exist between `--help`, the man page, and the source code
-
 ---
 
 ## General Findings
