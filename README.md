@@ -27,7 +27,7 @@ radosgw-admin.cc  (CLI11 definitions)
         ├── --help / user --help       → auto-generated at runtime
         └── --export-tree → commands.json
                 ├── generate_manpage.py    → doc/man/8/radosgw-admin.rst
-                └── generate_adminguide.py → doc/radosgw/admin.rst
+                └── generate_adminguide.py → doc/radosgw/admin.rst    (secondary goal)
 ```
 
 ---
@@ -74,4 +74,4 @@ without running the binary.
 ## Background
 
 GSoC 2026 application to the Ceph project.
-Prior merged PR in Ceph from earlier work with the mentor Yuval Lifshitz on the TBB iterator migration.
+Prior merged PR in Ceph (PR #67396), fixing a Lua background thread bug discovered during TBB migration work with mentor Yuval Lifshitz.
