@@ -176,8 +176,7 @@ struct RateLimitOpts {
 const CLI::Validator no_flag_value = CLI::Validator(
     [](std::string& val) -> std::string {
         if (!val.empty() && val[0] == '-') {
-            return "Value '" + val + "' looks like a flag. "
-                   "Use --option=value syntax to pass values starting with '-'.";
+            return "Value '" + val + "' looks like a flag. Use --option=value syntax.";
         }
         return std::string{};
     },
