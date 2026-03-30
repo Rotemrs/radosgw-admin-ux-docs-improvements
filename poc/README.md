@@ -497,42 +497,7 @@ user_rename->add_option("--new-uid", new_uid,
     "The new user ID")->required();
 ```
 
-### Step 2 — Recompile
-
-```bash
-g++ -std=c++17 radosgw_admin_poc.cpp -o radosgw_admin_poc
-```
-
-### Step 3 — Verify --help updated automatically
-
-```bash
-./radosgw_admin_poc user --help
-# 'rename' now appears in the list automatically
-
-./radosgw_admin_poc user rename --help
-# Shows --uid (required) and --new-uid (required) automatically
-```
-
-### Step 4 — Regenerate man page
-
-```bash
-./radosgw_admin_poc --export-tree | python3 generate_manpage.py > radosgw-admin.rst
-```
-
-The man page now includes `user rename` with its options. No manual editing.
-
-### Step 5 — Regenerate admin guide
-
-```bash
-# Existing narrative is preserved automatically
-./radosgw_admin_poc --export-tree | python3 generate_adminguide.py \
-    --existing=admin.rst > admin_new.rst && mv admin_new.rst admin.rst
-```
-
-A new section for `user rename` appears with accurate command syntax and options.
-The developer optionally adds narrative prose for the new command.
-
-### Step 6 — If adding to a cross-cutting flag list
+### Step 2 — If needed: add to cross-cutting flag lists
 
 If `user rename` should support `--format`, add it to the registration call:
 
@@ -544,7 +509,42 @@ register_format_flag({
 }, global_opts.format);
 ```
 
-That's all. `--format` now appears in `user rename --help` automatically.
+That's all. After recompiling, `--format` will appear in `user rename --help` automatically.
+
+### Step 3 — Recompile
+
+```bash
+g++ -std=c++17 radosgw_admin_poc.cpp -o radosgw_admin_poc
+```
+
+### Step 4 — Verify --help updated automatically
+
+```bash
+./radosgw_admin_poc user --help
+# 'rename' now appears in the list automatically
+
+./radosgw_admin_poc user rename --help
+# Shows --uid (required) and --new-uid (required) automatically
+```
+
+### Step 5 — Regenerate man page
+
+```bash
+./radosgw_admin_poc --export-tree | python3 generate_manpage.py > radosgw-admin.rst
+```
+
+The man page now includes `user rename` with its options. No manual editing.
+
+### Step 6 — Regenerate admin guide
+
+```bash
+# Existing narrative is preserved automatically
+./radosgw_admin_poc --export-tree | python3 generate_adminguide.py \
+    --existing=admin.rst > admin_new.rst && mv admin_new.rst admin.rst
+```
+
+A new section for `user rename` appears with accurate command syntax and options.
+The developer optionally adds narrative prose for the new command.
 
 ---
 
@@ -631,10 +631,6 @@ Backward compatibility is the priority. The following behaviors differ from lega
 | `--uid -x` (flag as value) | Silent wrong behavior | ❌ Error with clear message | Immediate feedback |
 | `--cluster` after verb | ⚠️ Sometimes works | ✅ Always works | Explicitly supported via fallthrough |
 
-**Design principle:** Be compatible with Ceph where behavior is intentional and
-relied upon, but prefer strict, predictable, and validated parsing otherwise.
-The PoC is in many ways more correct than legacy Ceph.
-
 ---
 
 ## Architecture summary
@@ -665,12 +661,13 @@ CI check: regenerate → diff → fail if different → PR blocked until fixed
 
 **When a developer adds a new command:**
 1. Write the CLI11 definition in C++ with a description string
-2. Recompile
-3. `--help` updates automatically — nothing else to do for terminal help
-4. Run `--export-tree | generate_manpage.py` — man page updates automatically
-5. Run `--export-tree | generate_adminguide.py` — admin guide skeleton updates
-6. Optionally write narrative prose for the new command
-7. CI enforces step 4 was done before the PR merges
+2. If needed: add to cross-cutting flag lists (`--format`, `--tenant`, etc.)
+3. Recompile
+4. `--help` updates automatically — nothing else to do for terminal help
+5. Run `--export-tree | generate_manpage.py` — man page updates automatically
+6. Run `--export-tree | generate_adminguide.py` — admin guide skeleton updates
+7. Optionally write narrative prose for the new command
+8. CI enforces step 5 was done before the PR merges
 
 **No separate documentation file needs to be manually maintained. Ever.**
 
